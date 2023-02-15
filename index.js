@@ -3,6 +3,8 @@ const app = express()
 const cloudscraper = require('cloudscraper')
 const axios = require('axios')
 const rateLimit = require('express-rate-limit')
+const http = require('http')
+const server = http.createServer(app)
 
 const limiter = rateLimit({
     windowMs: 1000 * 60,
@@ -43,6 +45,6 @@ app.post('/api/webhooks/:id/:token', (req, res) => {
         });
 })
 
-app.listen(3000, () => {
+server.listen(3000, () => {
     console.log("Ready!")
 })
